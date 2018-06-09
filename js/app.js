@@ -43,7 +43,14 @@ let openCards = [];
 allCards.forEach(function(card) {
   card.addEventListener('click', function(e) {
     openCards.push(card);
-    
     card.classList.add('open', 'show');
+
+    if (openCards.lenght ==2) {
+      setTimout(function() {
+        openCards.forEach(function(card) {
+          card.classList.remove('open', 'show');
+        });
+      }, 1000);
+    }
   });
 });
