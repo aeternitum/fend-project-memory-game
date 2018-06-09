@@ -42,15 +42,20 @@ let openCards = [];
 
 allCards.forEach(function(card) {
   card.addEventListener('click', function(e) {
-    openCards.push(card);
-    card.classList.add('open', 'show');
 
-    if (openCards.lenght ==2) {
-      setTimout(function() {
-        openCards.forEach(function(card) {
-          card.classList.remove('open', 'show');
-        });
-      }, 1000);
-    }
+    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+      openCards.push(card);
+      card.classList.add('open', 'show');
+
+      if (openCards.lenght ==2) {
+        setTimout(function() {
+          openCards.forEach(function(card) {
+            card.classList.remove('open', 'show');
+          });
+
+          openCards = [];
+        }, 1000);
+      }
+    }  
   });
 });
