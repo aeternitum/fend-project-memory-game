@@ -1,6 +1,5 @@
-/*
- * Create a list that holds all of your cards
- */
+//Make a list of all the cards
+
 let cards = ['fa-diamond', 'fa-diamond',
             'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor',
@@ -11,6 +10,7 @@ let cards = ['fa-diamond', 'fa-diamond',
             'fa-bomb', 'fa-bomb',
             ];
 
+//Adds each cards HTML to the page
 function generateCard(card) {
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
@@ -40,11 +40,11 @@ function shuffle(array) {
 
 /*
  * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *  done- display the card's symbol (put this functionality in another function that you call from this one)
+ *  done- add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  done- if the list already has another card, check to see if the two cards match
+ *  done  + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *  done  + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
@@ -54,13 +54,21 @@ function initGame() {
     return generateCard(card);
   });
 
+  let moves = 0;
+  let moveCounter = document.querySelector('.moves');
+  moves = 0;
+  moveCounter.innerText = moves;
+
   deck.innerHTML = cardHTML.join('');
 }
 
 initGame();
 
+
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
 
 allCards.forEach(function(card) {
   card.addEventListener('click', function(e) {
@@ -90,7 +98,13 @@ allCards.forEach(function(card) {
              openCards = [];
            }, 1000);
         }
+
+       moves += 1;
+       moveCounter.innerText = moves;
      }
    }
  });
 });
+
+
+//Thanks to Mike Wales Memory Game video for helping me get started and working out some bugs.
