@@ -91,7 +91,7 @@ allCards.forEach(function(card) {
 function moveCount() {
   moves++;
   moveCounter.innerHTML = moves;
-  if (moves <= 1) {
+  if (moves === 1) {
     second = 0;
     minute = 0;
     startTimer();
@@ -116,6 +116,7 @@ function starRating() {
 }
 
 //Timer for the game
+//Timer for the game
 let second = 0;
 let minute = 0;
 let timer = document.querySelector('.timer');
@@ -123,7 +124,7 @@ let interval;
 
 function startTimer() {
  interval = setInterval (function() {
-   timer.innerHTML = `${minute} : ${second}`;
+   timer.innerHTML = `${minute}:${second}`;
    second++;
 
    if (second == 60) {
@@ -133,5 +134,34 @@ function startTimer() {
  },1000);
 }
 
-//Thanks to Mike Wales Memory Game video for helping me get started and working out some bugs.
-//Also thanks to Morgen Becker for helping me figure out how to get the star rating working and helping me with the functions.
+//reset the timer
+function resetTimer() {
+  second = 0;
+  minute = 0;
+  timer =   document.querySelector('.timer');
+  timer.innerHTML = '0:00';
+  clearInterval(interval);
+}
+
+//Click event for the restart button
+let resetButton = document.querySelector('.restart');
+//When clicked, reset the timer, star rating, and move counter and call initGame again
+resetButton.addEventListener('click', function(e) {
+//Reset the timer
+  second = 0;
+  minute = 0;
+  hour = 0;
+  let timer = document.querySelector('.timer');
+  timer.innerHTML = '0:0';
+  clearInterval(interval);
+
+//Reset move counter and star rating
+  moves = 0;
+  moveCounter.innerHTML = moves;
+  for (let i = 0; i < stars.length; i++) {
+    stars[i].style.color = '#7F3FBF';
+    stars[i].style.visibility = 'visible';
+  }
+
+  initGame();
+});
