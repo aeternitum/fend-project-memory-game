@@ -56,7 +56,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- document.body.onload = initGame();
+document.body.onload = initGame();
 
 function initGame() {
   let deck = document.querySelector('.deck');
@@ -116,24 +116,23 @@ allCards.forEach(function(card) {
        moveCounter.innerText = moves;
      }
    }
- });
+  });
 });
 
-//Count the players moves, start timer on first click, and set the rating based on moves
-
-  if (moves > 6 && moves < 10) {
-    for (let i = 0; i < 3; i++) {
-      if (i > 1) {
-        stars[i].style.visibility = 'collapse';
-      }
+//Some code for the star rating that isn't working yet
+if (moves > 6 && moves < 10) {
+  for (let i = 0; i < 3; i++) {
+    if (i > 1) {
+      stars[i].style.visibility = 'collapse';
     }
-  } else if (moves > 11) {
+  }
+} else if (moves > 11) {
     for (let i = 0; i < 3; i++) {
       if (i > 0) {
         stars[i].style.visibility = 'collapse';
       }
     }
-  }
+}
 
 
 
@@ -147,6 +146,7 @@ function startTimer() {
  interval = setInterval (function() {
    timer.innerHTML = `${minute} : ${second}`;
    second++;
+
    if (second == 60) {
      minute++;
      second = 0;
@@ -154,7 +154,8 @@ function startTimer() {
  },1000);
 }
 
-function stopTimer() {
+//Modal function for when i get the modal created and working
+function modal() {
 
 }
 
