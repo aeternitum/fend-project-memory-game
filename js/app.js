@@ -10,6 +10,13 @@ let cards = ['fa-diamond', 'fa-diamond',
             'fa-bomb', 'fa-bomb',
             ];
 
+let counter = document.querySelector('.moves');
+let stars = document.querySelectorAll('.fa-star');
+let matchedCards = document.getElementsByClassName('match');
+let starsEarned = document.querySelectorAll('.stars li');
+//let closeIcon = document.querySelector('.close');
+//let modal = document.getElementById('congratsPopup');
+
 //Adds each cards HTML to the page
 function generateCard(card) {
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
@@ -65,8 +72,6 @@ function initGame() {
   deck.innerHTML = cardHTML.join('');
 }
 
-initGame();
-
 
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
@@ -113,6 +118,21 @@ allCards.forEach(function(card) {
  });
 });
 
+//Star Rating
+if (moves > 6 && moves < 10) {
+  for (let i = 0; i < 3; i++) {
+    if (i > 1) {
+      stars[i].style.visibility = 'collapse';
+    }
+  }
+} else if (moves > 11) {
+  for (let i = 0; i < 3; i++) {
+    if (i > 0) {
+      stars[i].style.visibility = 'collapse';
+    }
+  }
+}
+
 //Timer for the game
 let second = 0;
 let minute = 0;
@@ -121,7 +141,7 @@ let interval;
 
 function startTimer() {
  interval = setInterval (function() {
-   timer.innerHTML = `${minute} Minutes ${second} Seconds`;
+   timer.innerHTML = `${minute} : ${second}`;
    second++;
    if (second == 60) {
      minute++;
