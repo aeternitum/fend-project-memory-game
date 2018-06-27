@@ -80,6 +80,7 @@ let moveCounter = document.querySelector('.moves');
 
 allCards.forEach(function(card) {
   card.addEventListener('click', function(e) {
+
 //Start timer for the game after first click
     if (moves <= 1) {
       startTimer();
@@ -118,20 +119,23 @@ allCards.forEach(function(card) {
  });
 });
 
-//Star Rating
-if (moves > 6 && moves < 10) {
-  for (let i = 0; i < 3; i++) {
-    if (i > 1) {
-      stars[i].style.visibility = 'collapse';
+//Count the players moves, start timer on first click, and set the rating based on moves
+
+  if (moves > 6 && moves < 10) {
+    for (let i = 0; i < 3; i++) {
+      if (i > 1) {
+        stars[i].style.visibility = 'collapse';
+      }
+    }
+  } else if (moves > 11) {
+    for (let i = 0; i < 3; i++) {
+      if (i > 0) {
+        stars[i].style.visibility = 'collapse';
+      }
     }
   }
-} else if (moves > 11) {
-  for (let i = 0; i < 3; i++) {
-    if (i > 0) {
-      stars[i].style.visibility = 'collapse';
-    }
-  }
-}
+
+
 
 //Timer for the game
 let second = 0;
