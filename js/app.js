@@ -154,4 +154,8 @@ function startTimer() {
  },1000);
 }
 
+function stopTimer() {
+
+}
+
 //Thanks to Mike Wales Memory Game video for helping me get started and working out some bugs.
