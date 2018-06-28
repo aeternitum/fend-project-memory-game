@@ -47,8 +47,11 @@ function initGame() {
   moveCounter.innerText = moves;
 
   deck.innerHTML = cardHTML.join('');
+
+  flipCards();
 }
 
+function flipCards() {
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
 
@@ -86,7 +89,7 @@ allCards.forEach(function(card) {
     }
   });
 });
-
+}
 //Move counter for the game
 function moveCount() {
   moves++;
@@ -146,7 +149,9 @@ function resetTimer() {
 //Click event for the restart button
 let resetButton = document.querySelector('.restart');
 //When clicked, reset the timer, star rating, and move counter and call initGame again
-resetButton.addEventListener('click', function(e) {
+resetButton.addEventListener('click', resetGame);
+
+function resetGame() {
 //Reset the timer
   second = 0;
   minute = 0;
@@ -162,6 +167,18 @@ resetButton.addEventListener('click', function(e) {
     stars[i].style.color = '#7F3FBF';
     stars[i].style.visibility = 'visible';
   }
-
+  openCards = [];
   initGame();
-});
+  allCards.forEach(function(card) {
+    if(card.classList.contains('match')) {
+      card.classList.remove('match');
+    }
+  });
+
+  let newCardList = Array.from(cards);
+  shuffle(newCardList);
+  deck = document.querySelector('.deck');
+  for (card of newCardList) {
+    deck.appendChild(card);
+  }
+}
