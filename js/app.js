@@ -14,6 +14,9 @@ let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchedCards = document.getElementsByClassName('match');
 let stars = document.querySelectorAll('.fa-star');
+let starsEarned = document.querySelectorAll('.stars li');
+let closeIcon = document.querySelector('.close');
+let modal = document.getElementById('winnerPopup');
 
 
 function generateCard(card) {
@@ -182,3 +185,49 @@ function resetGame() {
     deck.appendChild(card);
   }
 }
+
+//modal function with some HTML to try to start with
+
+function youWin() {
+  if (matchedCards.length == 16) {
+    clearInterval(interval);
+    finalTime = timer.inner.HTML;
+
+    modal.classList.add('show');
+
+    let starRating = document.querySelector('.stars').innerHTML;
+
+    document.getElementById('finalMove').innerHTML = moves;
+    document.getElementById('starRating').innerHTML = starRating;
+    document.getElementById('totalTime').innerHTML = finalTime;
+
+    closeModal();
+  };
+}
+
+function closeModal() {
+  closeIcon.addEventListener('click', function() {
+    modal.classList.remove('show');
+    startGame();
+  });
+}
+
+function playAgain() {
+  modal.classList.remove('show');
+  startGame();
+}
+
+  // Loop to add event listeners to each card
+for (let i = 0; i < cardList.length; i++){
+    card = cardList[i];
+    card.addEventListener('click', displayCard);
+    card.addEventListener('click', cardOpen);
+    card.addEventListener('click',congratulations);
+}
+
+/*<button id="myBtn">Open Modal</button>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Some text in the Modal..</p>
+*/
