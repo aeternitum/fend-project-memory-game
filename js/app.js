@@ -14,9 +14,8 @@ let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchedCards = document.getElementsByClassName('match');
 let stars = document.querySelectorAll('.fa-star');
-let starsEarned = document.querySelectorAll('.stars li');
-let closeIcon = document.querySelector('.close');
-let modal = document.getElementById('winnerPopup');
+let modal = document.getElementById('winModal');
+let close = document.getElementsByClassName('close');
 
 
 function generateCard(card) {
@@ -88,6 +87,10 @@ allCards.forEach(function(card) {
 
       moveCount();
       starRating();
+
+      if (matchedCards.length == 16) {
+        openModal();
+      }
       }
     }
   });
@@ -130,7 +133,7 @@ let interval;
 
 function startTimer() {
  interval = setInterval (function() {
-   timer.innerHTML = `${minute}:${second}`;
+   timer.innerHTML = `${minute} mins ${second} secs`;
    second++;
 
    if (second == 60) {
@@ -145,7 +148,7 @@ function resetTimer() {
   second = 0;
   minute = 0;
   timer =   document.querySelector('.timer');
-  timer.innerHTML = '0:00';
+  timer.innerHTML = '0 mins 0 secs';
   clearInterval(interval);
 }
 
@@ -160,7 +163,7 @@ function resetGame() {
   minute = 0;
   hour = 0;
   let timer = document.querySelector('.timer');
-  timer.innerHTML = '0:0';
+  timer.innerHTML = '0 mins 0 secs';
   clearInterval(interval);
 
 //Reset move counter and star rating
@@ -172,6 +175,7 @@ function resetGame() {
   }
   openCards = [];
   initGame();
+  allCards = document.querySelectorAll('.card');
   allCards.forEach(function(card) {
     if(card.classList.contains('match')) {
       card.classList.remove('match');
@@ -186,48 +190,18 @@ function resetGame() {
   }
 }
 
-//modal function with some HTML to try to start with
+//Modal
 
-function youWin() {
-  if (matchedCards.length == 16) {
-    clearInterval(interval);
-    finalTime = timer.inner.HTML;
-
-    modal.classList.add('show');
-
-    let starRating = document.querySelector('.stars').innerHTML;
-
-    document.getElementById('finalMove').innerHTML = moves;
-    document.getElementById('starRating').innerHTML = starRating;
-    document.getElementById('totalTime').innerHTML = finalTime;
-
-    closeModal();
-  };
+function openModal() {
+  modal.style.display = "block";
 }
 
-function closeModal() {
-  closeIcon.addEventListener('click', function() {
-    modal.classList.remove('show');
-    startGame();
-  });
+close.onclick = function() {
+  modal.style.display = "none";
 }
 
-function playAgain() {
-  modal.classList.remove('show');
-  startGame();
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
-
-  // Loop to add event listeners to each card
-for (let i = 0; i < cardList.length; i++){
-    card = cardList[i];
-    card.addEventListener('click', displayCard);
-    card.addEventListener('click', cardOpen);
-    card.addEventListener('click',congratulations);
-}
-
-/*<button id="myBtn">Open Modal</button>
-<div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
-*/
