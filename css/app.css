@@ -124,16 +124,66 @@ h1 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Modal Content */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
-.close:hover, .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
 }
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #419bf4;
+    color: white;
+    text-align: center;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  background-color: #42f4e8;
+  text-align: center;
+  }
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #419bf4;
+    color: white;
+    text-align: center;
+}
+
+/* Thanks to https://www.w3schools.com/howto/howto_css_modals.asp for assisting
+with the modal animations*/

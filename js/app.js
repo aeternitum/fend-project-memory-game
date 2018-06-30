@@ -1,5 +1,4 @@
-//This is from scratch to see if I can get it. First going to have the list of cards followed by
-//declaring all the variables
+ //List of cards
 
 let cards = ['fa-diamond', 'fa-diamond',
             'fa-paper-plane-o', 'fa-paper-plane-o',
@@ -10,18 +9,16 @@ let cards = ['fa-diamond', 'fa-diamond',
             'fa-bicycle', 'fa-bicycle',
             'fa-bomb', 'fa-bomb'];
 
+//Declaring variables
 let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchedCards = document.getElementsByClassName('match');
 let stars = document.querySelectorAll('.fa-star');
-let modal = document.getElementById('winModal');
-let close = document.getElementsByClassName('close');
 
-
+//Generate the cards function
 function generateCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -39,7 +36,7 @@ function shuffle(array) {
 }
 
 document.body.onload = initGame();
-
+//Initiate the game function
 function initGame() {
   let deck = document.querySelector('.deck');
   let cardHTML = shuffle(cards).map(function(card) {
@@ -52,7 +49,7 @@ function initGame() {
 
   flipCards();
 }
-
+//Flip the cards
 function flipCards() {
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
@@ -125,7 +122,6 @@ function starRating() {
 }
 
 //Timer for the game
-//Timer for the game
 let second = 0;
 let minute = 0;
 let timer = document.querySelector('.timer');
@@ -175,7 +171,6 @@ function resetGame() {
   }
   openCards = [];
   initGame();
-  allCards = document.querySelectorAll('.card');
   allCards.forEach(function(card) {
     if(card.classList.contains('match')) {
       card.classList.remove('match');
@@ -191,17 +186,18 @@ function resetGame() {
 }
 
 //Modal
-
+let modal = document.getElementById('winModal');
+let span = document.getElementsByClassName("close")[0];
+//Open the model function
 function openModal() {
   modal.style.display = "block";
-}
-
-close.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
+  clearInterval(interval);
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    }
   }
 }
