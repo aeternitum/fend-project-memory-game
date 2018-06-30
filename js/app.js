@@ -188,16 +188,40 @@ function resetGame() {
 //Modal
 let modal = document.getElementById('winModal');
 let span = document.getElementsByClassName("close")[0];
-//Open the model function
+let finalMoves = document.querySelector('.final-moves');
+let finalTime = document.querySelector('.final-time');
+let playAgain = document.querySelector('.play-again');
+//let finalStars = document.querySelector('.final-stars');
+
 function openModal() {
   modal.style.display = "block";
+
   clearInterval(interval);
+
+  finalMoves = moves;
+
+  finalTime = timer;
+
+  //finalStars =
   span.onclick = function() {
     modal.style.display = "none";
   }
+//Play again button
+  playAgain.addEventListener('click', restartPlay);
+
   window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+    if (event.target == modal) {
+      modal.style.display = "none";
     }
   }
 }
+//function for play again button
+function restartPlay () {
+  if (modal.style.display == "block") {
+    modal.style.display = "none";
+  }
+  resetGame();
+}
+
+//Thanks to Mike Wales video at for helping me get started.
+//Also thanks to Morgen Becker, Xavier, and LeahK for helping me when I got stuck.
