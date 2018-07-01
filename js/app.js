@@ -237,5 +237,5 @@ function restartPlay () {
   }
 }
 
-//Thanks to Mike Wales video at for helping me get started.
+//Thanks to Mike Wales webinar at https://www.youtube.com/watch?v=_rUH-sEs68Y for helping me get started.
 //Also thanks to Morgen Becker, Xavier, and LeahK for helping me when I got stuck.
