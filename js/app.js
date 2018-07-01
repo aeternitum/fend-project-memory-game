@@ -1,5 +1,4 @@
- //List of cards
-
+//List of cards
 let cards = ['fa-diamond', 'fa-diamond',
             'fa-paper-plane-o', 'fa-paper-plane-o',
             'fa-anchor', 'fa-anchor',
@@ -9,13 +8,13 @@ let cards = ['fa-diamond', 'fa-diamond',
             'fa-bicycle', 'fa-bicycle',
             'fa-bomb', 'fa-bomb'];
 
-//Declaring variables
+//Declare variables
 let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchedCards = document.getElementsByClassName('match');
 let stars = document.querySelectorAll('.fa-star');
 
-//Generate the cards function
+//Generate cards
 function generateCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
@@ -35,8 +34,10 @@ function shuffle(array) {
     return array;
 }
 
+//Run initGame function when document loads
 document.body.onload = initGame();
-//Initiate the game function
+
+//Start the game
 function initGame() {
   let deck = document.querySelector('.deck');
   let cardHTML = shuffle(cards).map(function(card) {
@@ -49,6 +50,7 @@ function initGame() {
 
   flipCards();
 }
+
 //Flip the cards
 function flipCards() {
 let allCards = document.querySelectorAll('.card');
@@ -93,11 +95,12 @@ allCards.forEach(function(card) {
   });
 });
 }
+
 //Move counter for the game
 function moveCount() {
   moves++;
   moveCounter.innerHTML = moves;
-  if (moves === 1) {
+  if (moves == 1) {
     second = 0;
     minute = 0;
     startTimer();
@@ -136,10 +139,10 @@ function startTimer() {
      minute++;
      second = 0;
    }
- },1000);
+ },1100);
 }
 
-//reset the timer
+//Reset the timer
 function resetTimer() {
   second = 0;
   minute = 0;
@@ -150,6 +153,7 @@ function resetTimer() {
 
 //Click event for the restart button
 let resetButton = document.querySelector('.restart');
+
 //When clicked, reset the timer, star rating, and move counter and call initGame again
 resetButton.addEventListener('click', resetGame);
 
@@ -157,7 +161,6 @@ function resetGame() {
 //Reset the timer
   second = 0;
   minute = 0;
-  hour = 0;
   let timer = document.querySelector('.timer');
   timer.innerHTML = '0 mins 0 secs';
   clearInterval(interval);
@@ -188,39 +191,50 @@ function resetGame() {
 //Modal
 let modal = document.getElementById('winModal');
 let span = document.getElementsByClassName("close")[0];
-let finalMoves = document.querySelector('.final-moves');
-let finalTime = document.querySelector('.final-time');
 let playAgain = document.querySelector('.play-again');
-//let finalStars = document.querySelector('.final-stars');
 
 function openModal() {
   modal.style.display = "block";
-
+  //stop timer
   clearInterval(interval);
 
-  finalMoves = moves;
+  //Displays the moves on the modal
+  let moveScore = document.querySelector('.final-moves');
+  moveScore.innerHTML = moves;
 
-  finalTime = timer;
+  //Displays the final time on the modal
+  let timeScore = document.querySelector('.final-time');
+  timeScore.innerHTML = `${minute} mins ${second} secs`;
 
-  //finalStars =
+  //Displays the star rating on the modal
+  let starScore = document.querySelector('.final-stars');
+  let starRating = document.querySelector('#star-rating').innerHTML;
+  starScore.innerHTML = starRating;
+
+  //If click the x it will close the modal
   span.onclick = function() {
     modal.style.display = "none";
+    resetGame();
   }
-//Play again button
+
+  //When click the play again button it runs the restartPlay function
   playAgain.addEventListener('click', restartPlay);
 
+  //Closed the modal when the user clicks outside the message window
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      resetGame();
     }
   }
 }
-//function for play again button
+
+//Closed the modal and restarts the game when the Play Again button is clicked
 function restartPlay () {
   if (modal.style.display == "block") {
     modal.style.display = "none";
+    resetGame();
   }
-  resetGame();
 }
 
 //Thanks to Mike Wales video at for helping me get started.
