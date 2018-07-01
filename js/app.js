@@ -143,7 +143,7 @@ function startTimer() {
 function resetTimer() {
   second = 0;
   minute = 0;
-  timer =   document.querySelector('.timer');
+  timer = document.querySelector('.timer');
   timer.innerHTML = '0 mins 0 secs';
   clearInterval(interval);
 }

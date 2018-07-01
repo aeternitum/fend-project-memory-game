@@ -12,11 +12,11 @@
 
     <div class="container">
         <header>
-            <h1>Crystal's Memory Game</h1>
+          <h1>Crystal's Memory Game</h1>
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
+        	<ul class="stars" id="star-rating">
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
@@ -35,26 +35,23 @@
           <div class="modal-content">
             <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Congratulations!!  You are the Winner!</h2>
+            <h2>Congratulations!! You Won!</h2>
             </div>
             <div class="modal-body">
               <div class="total-moves">
-                Total moves: <span class="final-                 moves">3</span>
+                Total Moves: <span class="final-moves">3</span>
               </div>
               <div class="total-time">
-                Time: <span class="final-time">0                 mins 0 secs</span>
+                Final Time: <span class="final-time">0 secs</span>
               </div>
               <div class="total-stars">
-                Star rating: <span class="final-                 stars">0</span>
+                Star Rating: <span class="final-stars">0</span>
               </div>
               <p>Want to play again?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="play-again">Play Again!</button>
             </div>
-          <!--  Final time: <span final-timer>0 mins 0 secs</span>
-            Total moves: <span final-moves>5</span>
-            Star rating: <span final-stars>"fa fastar"</span>-->
           </div>
         </div>
         <ul class="deck"></ul>
